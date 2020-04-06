@@ -1,11 +1,11 @@
-function addMenuData(text, arr) {
+function addMenuData(text, menu) {
   if (text.length !== 2) {
     return;
   }
-  if (!arr.has(text[0])) {
-    arr.set(text[0], []);
+  if (!menu.has(text[0])) {
+    menu.set(text[0], []);
   }
-  arr.get(text[0]).push(text[1]);
+  menu.get(text[0]).push(text[1]);
 }
 
 function createMenuData(data) {
@@ -15,8 +15,6 @@ function createMenuData(data) {
     const split = line.split('/');
     addMenuData(split, menuTree);
   });
-
-  Object.fromEntries(menuTree);
 
   menuTree.forEach((child, parent) => {
     menuJSON.push({ title: parent, data: child });
