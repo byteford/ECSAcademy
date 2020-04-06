@@ -1,5 +1,9 @@
 function createMenuData(data) {
-
+  var output = new Map();
+  output.set("parent1", new Array());
+  output.get("parent1").push("parent1child");
+  console.log(Object.fromEntries(output))
+  return output
 }
 
 describe("menu Data Generator", () => {
