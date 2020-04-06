@@ -1,12 +1,19 @@
 function createMenuData(data) {
-  var output = new Map();
+  var menuTree = new Map();
+  var menuJSON = new Array();
   data.forEach(line => {
     var split = line.split('/')
-    addMenuData(split,output)
+    addMenuData(split,menuTree)
   });
 
-  console.log(Object.fromEntries(output))
-  return output
+  console.log(Object.fromEntries(menuTree))
+  var i = 0;
+  for(var entry of menuTree.entries()){
+    console.log(entry)
+    var obj = {"title":entry[0], data: entry[1]}
+    menuJSON.push(obj);
+  }
+  return menuJSON;
 }
 function addMenuData(text, arr){
   if(text.length != 2){
