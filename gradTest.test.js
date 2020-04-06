@@ -2,27 +2,26 @@ function createMenuData(data) {
   var menuTree = new Map();
   var menuJSON = new Array();
   data.forEach(line => {
-    var split = line.split('/')
-    addMenuData(split,menuTree)
+    var split = line.split('/');
+    addMenuData(split,menuTree);
   });
 
-  console.log(Object.fromEntries(menuTree))
+  Object.fromEntries(menuTree)
   var i = 0;
   for(var entry of menuTree.entries()){
-    console.log(entry)
-    var obj = {"title":entry[0], data: entry[1]}
-    menuJSON.push(obj);
+    menuJSON.push({"title":entry[0], data: entry[1]});
   }
   return menuJSON;
 }
+
 function addMenuData(text, arr){
   if(text.length != 2){
     return;
   }
   if(!arr.has(text[0])){
-    arr.set(text[0],new Array())
+    arr.set(text[0],new Array());
   }
-  arr.get(text[0]).push(text[1])
+  arr.get(text[0]).push(text[1]);
 }
 
 describe("menu Data Generator", () => {
