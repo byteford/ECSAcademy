@@ -1,21 +1,21 @@
 function createMenuData(data) {
   var output = new Map();
-  addMenuData("Parent1","Parent1Child1",output);
-  addMenuData("Parent1","Parent1Child2",output);
-  addMenuData("Parent2","",output);
-  //output.set("parent1", new Array());
-  //output.get("parent1").push("parent1child");
+  data.forEach(line => {
+    var split = line.split('/')
+    addMenuData(split,output)
+  });
+
   console.log(Object.fromEntries(output))
   return output
 }
-function addMenuData(parent,child, arr){
-  if(child == ""){
+function addMenuData(text, arr){
+  if(text.length != 2){
     return;
   }
-  if(!arr.has(parent)){
-    arr.set(parent,new Array())
+  if(!arr.has(text[0])){
+    arr.set(text[0],new Array())
   }
-  arr.get(parent).push(child)
+  arr.get(text[0]).push(text[1])
 }
 
 describe("menu Data Generator", () => {
